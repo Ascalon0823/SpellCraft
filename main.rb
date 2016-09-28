@@ -1,1 +1,3 @@
-print "This is a FYP"
+require_relative "game.rb"
+
+Game.version
