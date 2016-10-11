@@ -43,8 +43,10 @@ class Attribute
     end
   
     def self.print
+        puts "========================================================"
         @@attributes.each do |attribute|
             puts "Attribute name = %s, type = %s, default value = %s" % [attribute.getName,attribute.getType,attribute.getValue]
         end
+        puts "========================================================"
     end
 end
