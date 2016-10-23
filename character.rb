@@ -21,7 +21,6 @@ class Character
   def initialize(name)
      @name = name
      @ha_attr = Hash.new
-     @possesion = []
      @@ha_charAttr.each { |key,attr|  @ha_attr[key]=attr.getValue}
      @@no_of_characters +=1
      @@characters<<self
