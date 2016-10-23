@@ -1,19 +1,19 @@
 require "attribute.rb"
 class Character
-     @@characters = []
      @@no_of_characters = 0
      @@ha_charAttr = Hash.new
+    @@ha_characters = Hash.new
     
   def self.load
       @@ha_charAttr.clear
-      @@characters = []
       @@no_of_character = 0
+      @@ha_characters.clear
       if(Attribute.no_of_attributes == 0)
           Attribute.load
       end
-      Attribute.attributes.each{ |attr|
+      Attribute.attributes.each{ |key,attr|
           if ( attr.getType == "Character")
-               @@ha_charAttr[attr.getName] = attr
+               @@ha_charAttr[key] = attr.getValue
           end
      }
   end
@@ -21,9 +21,9 @@ class Character
   def initialize(name)
      @name = name
      @ha_attr = Hash.new
-     @@ha_charAttr.each { |key,attr|  @ha_attr[key]=attr.getValue}
+     @@ha_charAttr.each { |key,value|  @ha_attr[key]=value}
      @@no_of_characters +=1
-     @@characters<<self
+     @@ha_characters[name] = self
   end
   
   def setAttr(attr,value)
@@ -34,4 +34,7 @@ class Character
       @ha_attr[attr]
   end
   
+  def getName
+      @name
+  end
 end
