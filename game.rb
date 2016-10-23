@@ -31,6 +31,7 @@ class Game
                 puts "Creating Character"
                 test_Char = Character.new("Arc")
                 puts test_Char.inspect
+                puts "Creating Battle Agent"
                 test_Batt = Battle.new(test_Char)
                 puts test_Batt.inspect
             when "E"
