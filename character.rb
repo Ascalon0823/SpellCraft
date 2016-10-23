@@ -26,4 +26,13 @@ class Character
      @@no_of_characters +=1
      @@characters<<self
   end
+  
+  def setAttr(attr,value)
+      @ha_attr[attr] = value
+  end
+  
+  def getAttr(attr)
+      @ha_attr[attr]
+  end
+  
 end
