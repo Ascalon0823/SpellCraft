@@ -1,4 +1,5 @@
 require_relative "attribute.rb"
+require_relative "character.rb"
 
 class Game
     @@gameVersion = 0.01
@@ -8,6 +9,7 @@ class Game
     
     def initialize
         Attribute.load
+        Character.load
         main_menu
     end
 
@@ -23,6 +25,9 @@ class Game
             case option
             when "A"
                 puts "Underconstruction"
+                puts "Creating Character"
+                test_Char = Character.new("Arc")
+                puts test_Char.inspect
             when "E"
                 puts "Engine Starting..."
                 Engine.menu
