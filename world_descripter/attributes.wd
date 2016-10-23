@@ -1,5 +1,7 @@
 Strength Character 10 
 Agility Character 10 
-Mental Character 100 
-Morale Character 1000 
-Mana Character 1000 
+Mental Character 10 
+Morale Battle 1000 
+Mana Battle 0 
+Status Battle Normal 
+Life Battle 0 
