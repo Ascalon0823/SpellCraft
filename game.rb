@@ -1,5 +1,6 @@
 require_relative "attribute.rb"
 require_relative "character.rb"
+require_relative "battle.rb"
 
 class Game
     @@gameVersion = 0.01
@@ -10,6 +11,8 @@ class Game
     def initialize
         Attribute.load
         Character.load
+        Battle.load
+        Utility.load
         main_menu
     end
 
@@ -28,6 +31,8 @@ class Game
                 puts "Creating Character"
                 test_Char = Character.new("Arc")
                 puts test_Char.inspect
+                test_Batt = Battle.new(test_Char)
+                puts test_Batt.inspect
             when "E"
                 puts "Engine Starting..."
                 Engine.menu
