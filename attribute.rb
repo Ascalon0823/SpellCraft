@@ -1,21 +1,19 @@
-require "objspace"
 
 class Attribute
     @@no_of_attributes = 0
     def self.no_of_attributes
       @@no_of_attributes
     end
-    @@attributes = []
+    @@ha_attr = Hash.new
     def self.attributes
-      @@attributes
+        @@ha_attr
     end
-    
     def initialize(name,type,value)
         @name = name
         @type = type
-        @value = value
+        @value = Integer(value) rescue value
         @@no_of_attributes+=1
-        @@attributes<<self
+        @@ha_attr[name]=self
     end
     
     def getName
@@ -30,16 +28,16 @@ class Attribute
 
     def self.save
         f = File.open("world_descripter/attributes.wd","w")
-        @@attributes.each do |attr|
+        @@ha_attr.each { |name,attr|
             line = "%s %s %s \n" % [attr.getName,attr.getType,attr.getValue]
             f.write(line)
-        end
+        }
         f.close
     end
 
     def self.load
         @@no_of_attributes=0
-        @@attributes.clear
+        @@ha_attr.clear
         f = File.open("world_descripter/attributes.wd","r")
         f.each_line do |line|
             details = line.split
@@ -50,9 +48,13 @@ class Attribute
   
     def self.print
         puts "========================================================"
-        @@attributes.each do |attribute|
-            puts "Attribute name = %s, type = %s, default value = %s" % [attribute.getName,attribute.getType,attribute.getValue]
-        end
+        @@ha_attr.each {|key,attr|
+            puts "Attribute name = %s, type = %s, default value = %s" % [attr.getName,attr.getType,attr.getValue]
+        }
         puts "========================================================"
+    end
+    
+    def self.find(attr)
+        @@ha_attr[attr]
     end
 end
