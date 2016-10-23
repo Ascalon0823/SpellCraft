@@ -2,8 +2,14 @@ require "objspace"
 
 class Attribute
     @@no_of_attributes = 0
+    def self.no_of_attributes
+      @@no_of_attributes
+    end
     @@attributes = []
-
+    def self.attributes
+      @@attributes
+    end
+    
     def initialize(name,type,value)
         @name = name
         @type = type
