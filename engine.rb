@@ -22,38 +22,45 @@ class Engine
             option = gets.chomp.upcase
             case option
             when "A"
-                puts "Please enter new attribute Name : "
-                name = gets.chomp.capitalize
-                puts "Please enter new attribute Type : "
-                type = gets.chomp.capitalize
-                puts "Please enter new attribute default value : "
-                value = gets.chomp
-                
-                puts "The attribute you have entered is \n Name: %s \n Type: %s \n Default Value: %s \n" % [name,type,value]
-                puts "Are you sure to add this attribute in to game ? Y/N"
-                processed = false
-                while(!processed)
-                    choice = gets.chomp.upcase
-                    case choice
-                    when "Y"
-                        processed = true
-                        add_attr(name,type,value)
-                        puts "Attribute successfully added"
-                    when "N"
-                        "Attribute not add"
-                        processed = true
-                    else
-                        "Invalid input"
-                    end
-                end
+                add_attr_menu
             when "S"
                 show_attr
             when "Q"
                 quit = true
+                puts "Reloading Attributes"
+                Attribute.load
                 puts "Engine shutting down.."
+                
             else
                 puts "Invalid input"
             end
         end
+    end
+    
+    def self.add_attr_menu
+          puts "Please enter new attribute Name : "
+          name = gets.chomp.capitalize
+          puts "Please enter new attribute Type : "
+          type = gets.chomp.capitalize
+          puts "Please enter new attribute default value : "
+          value = gets.chomp
+
+          puts "The attribute you have entered is \n Name: %s \n Type: %s \n Default Value: %s \n" % [name,type,value]
+          puts "Are you sure to add this attribute in to game ? Y/N"
+          processed = false
+          while(!processed)
+               choice = gets.chomp.upcase
+               case choice
+               when "Y"
+                   processed = true
+                   add_attr(name,type,value)
+                   puts "Attribute successfully added"
+               when "N"
+                   "Attribute not add"
+                    processed = true
+               else
+                    "Invalid input"
+               end
+          end
     end
 end
